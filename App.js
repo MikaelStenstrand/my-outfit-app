@@ -1,29 +1,49 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import ImagePickerContainer from './src/components/ImagePickerContainer.js';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+// INITIALIZATIONS
+import Amplify, { Auth, Storage } from 'aws-amplify';
+import aws_exports from './aws-exports';
+Amplify.configure(aws_exports);
+import { withAuthenticator } from 'aws-amplify-react-native';
+global.Buffer = global.Buffer || require("buffer").Buffer; // file reading buffer
 
-type Props = {};
-export default class App extends Component<Props> {
+// debugging prints
+Auth.currentCredentials().then(result => console.log('Current users IdentityId: ', result.data.IdentityId));
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      image: '',
+    };
+
+  }
+  async getPhotoFromCloud()  {
+    const result = await Storage.list('photos/', {level: 'private'})
+    console.log('all images: ',result);
+    let image = await Storage.get(result[0].key, {level: 'private'});
+    this.setState({
+      image: image,
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text style={styles.welcome}>My Outfit</Text>
+        <ImagePickerContainer />
+        <TouchableOpacity onPress={this.getPhotoFromCloud.bind(this)}>
+          <Text>Get photo from cloud</Text>
+        </TouchableOpacity>
+        <View>
+          <Image
+            style={{width: 50, height: 50}}
+            source={{uri: this.state.image}}
+          />
+        </View>
       </View>
     );
   }
@@ -47,3 +67,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export default withAuthenticator(App);
