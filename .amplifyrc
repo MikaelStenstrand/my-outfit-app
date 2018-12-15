@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "myoutfitapp-20181215205434-authRole",
+            "UnauthRoleArn": "arn:aws:iam::728953740133:role/myoutfitapp-20181215205434-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::728953740133:role/myoutfitapp-20181215205434-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "myoutfitapp-20181215205434-deployment",
+            "UnauthRoleName": "myoutfitapp-20181215205434-unauthRole",
+            "StackName": "myoutfitapp-20181215205434",
+            "StackId": "arn:aws:cloudformation:eu-central-1:728953740133:stack/myoutfitapp-20181215205434/deb26e70-009a-11e9-a013-0a62f85f92f4"
+        }
+    }
+}

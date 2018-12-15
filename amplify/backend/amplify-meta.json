@@ -1,0 +1,89 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "myoutfitapp-20181215205434-authRole",
+			"UnauthRoleArn": "arn:aws:iam::728953740133:role/myoutfitapp-20181215205434-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::728953740133:role/myoutfitapp-20181215205434-authRole",
+			"Region": "eu-central-1",
+			"DeploymentBucketName": "myoutfitapp-20181215205434-deployment",
+			"UnauthRoleName": "myoutfitapp-20181215205434-unauthRole",
+			"StackName": "myoutfitapp-20181215205434",
+			"StackId": "arn:aws:cloudformation:eu-central-1:728953740133:stack/myoutfitapp-20181215205434/deb26e70-009a-11e9-a013-0a62f85f92f4"
+		}
+	},
+	"auth": {
+		"cognito33d05604": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/auth/cognito33d05604-cloudformation-template.yml",
+				"logicalId": "authcognito33d05604"
+			},
+			"lastPushTimeStamp": "2018-12-15T19:23:18.133Z",
+			"output": {
+				"AppClientSecret": "ib5r20ghin9do937flrt19htgnophphfchgvcnl8lv2fijn3fhn",
+				"UserPoolId": "eu-central-1_Gx8cMYi1V",
+				"AppClientIDWeb": "748d9ilpcevci16vsdg3ksnuiu",
+				"AppClientID": "62kgt4te2kmge6vc4ghss3qcoh",
+				"IdentityPoolId": "eu-central-1:bf055d7f-6339-4004-bcfb-4aa85c2c2dbe",
+				"IdentityPoolName": "cognito33d05604_identitypool_33d05604",
+				"UserPoolName": "cognito33d05604_userpool_33d05604"
+			},
+			"lastPushDirHash": "tiESWQNgUqNAyWhYrvNaVNc+kaw="
+		}
+	},
+	"analytics": {
+		"myoutfitapp": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsmyoutfitapp"
+			},
+			"lastPushTimeStamp": "2018-12-15T19:23:18.134Z",
+			"output": {
+				"appName": "myoutfitapp",
+				"Region": "us-east-1",
+				"Id": "0dd55fcfecc64c329ca8963640e8f50b"
+			},
+			"lastPushDirHash": "+cVRoB+U3ydHrbAl1Aqy3KTRmcA="
+		}
+	},
+	"storage": {
+		"myoutfitapp": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storagemyoutfitapp"
+			},
+			"lastPushTimeStamp": "2018-12-15T19:23:18.135Z",
+			"output": {
+				"BucketName": "myoutfitappd2ad6d03e4a14c1f9956f3cc1205d928",
+				"Region": "eu-central-1"
+			},
+			"lastPushDirHash": "EBvNVtBusxjEOyHDQPKNPwqoLeU="
+		}
+	},
+	"api": {
+		"myoutfitapp": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS",
+				"GraphQLAPIIdOutput": "sletj7e64fairahgev7rfaiypi",
+				"GraphQLAPIEndpointOutput": "https://t6thxpkk6ff3vik3r2fp2yrq4m.appsync-api.eu-central-1.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-p5segaklqfgu3pl2jtgb6opdqa",
+				"AuthCognitoUserPoolIdOutput": "eu-central-1_Gx8cMYi1V",
+				"AuthCognitoUserPoolNativeClientId": "See UserPool: eu-central-1_Gx8cMYi1V",
+				"AuthCognitoUserPoolJSClientId": "See UserPool: eu-central-1_Gx8cMYi1V"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apimyoutfitapp"
+			},
+			"lastPushTimeStamp": "2018-12-15T19:23:19.010Z",
+			"lastPushDirHash": "oYMjBtBxO0Hdkd+rZuEZpu5UtWo="
+		}
+	}
+}

@@ -1,0 +1,16 @@
+projects:
+  myoutfitapp:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        graphQLApiId: sletj7e64fairahgev7rfaiypi
+      endpoints:
+        prod: >-
+          https://t6thxpkk6ff3vik3r2fp2yrq4m.appsync-api.eu-central-1.amazonaws.com/graphql

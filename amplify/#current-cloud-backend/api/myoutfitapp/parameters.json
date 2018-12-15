@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "myoutfitapp",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito33d05604",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "schemaGraphql": "s3://myoutfitapp-20181215205434-deployment/amplify-appsync-files/schema.graphql.1544901697312",
+    "ResolverBucket": "myoutfitapp-20181215205434-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1544901697312"
+}

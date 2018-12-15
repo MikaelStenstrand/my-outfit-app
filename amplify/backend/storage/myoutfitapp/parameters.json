@@ -1,0 +1,9 @@
+{
+    "bucketName": "myoutfitappd2ad6d03e4a14c1f9956f3cc1205d928",
+    "authPolicyName": "s3_amplify_a403e756",
+    "unauthPolicyName": "s3_amplify_a403e756",
+    "authRoleName": "myoutfitapp-20181215205434-authRole",
+    "unauthRoleName": "myoutfitapp-20181215205434-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": "r"
+}

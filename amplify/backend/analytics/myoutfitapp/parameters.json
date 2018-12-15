@@ -1,0 +1,11 @@
+{
+    "appName": "myoutfitapp",
+    "roleName": "pinpointLambdaRole6f958bd1",
+    "cloudWatchPolicyName": "cloudWatchPolicy6f958bd1",
+    "pinpointPolicyName": "pinpointPolicy6f958bd1",
+    "authPolicyName": "pinpoint_amplify_6f958bd1",
+    "unauthPolicyName": "pinpoint_amplify_6f958bd1",
+    "authRoleName": "myoutfitapp-20181215205434-authRole",
+    "unauthRoleName": "myoutfitapp-20181215205434-unauthRole",
+    "IAMPrefix": "728953740133"
+}
