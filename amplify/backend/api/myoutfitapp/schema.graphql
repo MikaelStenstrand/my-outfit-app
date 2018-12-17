@@ -1,5 +1,27 @@
-type Todo @model {
+type Garment @model {
   id: ID!
   name: String!
   description: String
+  type: GarmentType
+}
+
+type Outfit @model {
+  id: ID!
+  name: String!
+  description: String
+  garments: [Garment!]! @connection
+}
+
+enum GarmentType {
+  TROUSERS
+  SHIRT
+  SHOES
+  SKIRT
+  SWEATER
+  GLOVES
+  HAT
+  SHORTS
+  DRESS
+  JACKET
+  UNKNOWN
 }
