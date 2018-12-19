@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image,  } from 'react-native';
-import Amplify, { Auth, Storage } from 'aws-amplify';
+import {StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
+import Amplify, { Storage } from 'aws-amplify';
 
 import ImagePickerContainer from './src/components/ImagePickerContainer.js';
+import ListGarmentsContainer from './src/components/ListGarmentsContainer.js';
 import { createGarmentAPI, listGarmentsAPI } from './src/scripts/garment-api-calls.js';
+
+// UI-ELEMENTS
+import { Button, List, ListItem, Icon } from 'react-native-elements'
 
 // INITIALIZATIONS
 import aws_exports from './aws-exports';
@@ -16,9 +20,10 @@ class App extends Component {
     super(props);
     this.state = { 
       image: '',
+      garments: [],
     };
-
   }
+
   async getPhotoFromCloud()  {
     const result = await Storage.list('photos/', {level: 'private'})
     console.log('all images: ',result);
@@ -30,30 +35,46 @@ class App extends Component {
 
   render() {
     // Testing purposes
-    const garmentObj = {
+    const newGarment = {
       name: 'My first Garment!',
       description: 'new jeans!',
       type: "TROUSERS"
     };
+    
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>My Outfit</Text>
-        <ImagePickerContainer />
-        <TouchableOpacity onPress={this.getPhotoFromCloud.bind(this)}>
-          <Text>Get photo from cloud</Text>
-        </TouchableOpacity>
-        <View>
-          <Image
-            style={{width: 50, height: 50}}
-            source={{uri: this.state.image}}
+      <View style={styles.contianer}>
+        <ScrollView style={styles.body}>
+          <Text>My Outfit</Text>
+          <ImagePickerContainer />
+          <TouchableOpacity onPress={this.getPhotoFromCloud.bind(this)}>
+            <Text>Get photo from cloud</Text>
+          </TouchableOpacity>
+          <View>
+            <Image
+              style={{width: 50, height: 50}}
+              source={{uri: this.state.image}}
+            />
+          </View>
+          <Button
+            raised
+            backgroundColor='#6699cc'
+            icon={{ name: 'cached' }}
+            title='Get all your clothes'
+            onPress={listGarmentsAPI}
           />
+
+          <ListGarmentsContainer />
+
+        </ScrollView>
+        <View style={styles.footer}>
+          <Icon
+              raised
+              name='plus'
+              type='font-awesome'
+              color='#f50'
+              onPress={() => createGarmentAPI(newGarment)} 
+            />
         </View>
-        <TouchableOpacity onPress={listGarmentsAPI}>
-          <Text>Get all your clothes</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => createGarmentAPI(garmentObj)}>
-          <Text>Store new garment</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -62,20 +83,16 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  body: {
+    marginTop: 50,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  footer: {
+    position:'absolute',
+    bottom: 15,
+    right: 15,
+    alignSelf:'flex-end'
+  }
 });
 
 export default withAuthenticator(App);
