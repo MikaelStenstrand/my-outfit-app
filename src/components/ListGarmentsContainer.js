@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import { createGarmentAPI, listGarmentsAPI } from '../scripts/garment-api-calls.js';
-import { Button, List, ListItem, Icon } from 'react-native-elements'
+import { listGarmentsAPI } from '../scripts/garment-api-calls.js';
+import { List, ListItem } from 'react-native-elements'
 
 export default class ListGarmentsContainer extends Component {
   constructor(props)  {
@@ -13,9 +13,11 @@ export default class ListGarmentsContainer extends Component {
   }
 
   componentDidMount() {
-    listGarmentsAPI()
+    const options = { limit: 20 };
+    listGarmentsAPI(options)
       .then(result => {
-        console.log("component did mount" ,result.data.listGarments.items);
+        // console.log("ListGarmentsContainer" , result.data.listGarments.items);
+        console.log("ListGarmentsContainer: " , result.data.listGarments.items.length);
         this.setState({
           garments: result.data.listGarments.items
         });
@@ -26,8 +28,6 @@ export default class ListGarmentsContainer extends Component {
   }
 
   render() {
-    console.log('render:', this.state.garments)
-
     return (
       <View>
         <List containerStyle={{marginBottom: 20}}>
