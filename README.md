@@ -2,12 +2,12 @@
 
 
 ## Technology stack
-- React Native
-- AWS services: 
--- Authentication: Cognito
--- Database: GraphQL, MongoDB, Lamda
--- Storage: S3
--- Analytics: Pinpoint
+React Native
+AWS services: 
+- Authentication: Cognito
+- Database: GraphQL, MongoDB, Lamda
+- Storage: S3
+- Analytics: Pinpoint
 
 
 ## Trello board
