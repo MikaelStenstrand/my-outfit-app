@@ -5,7 +5,7 @@ export async function createGarmentAPI(garmentObj)  {
   if (!garmentObj) return;
   try {
     const response = await API.graphql(graphqlOperation(createGarmentQuery, garmentObj));
-    // console.log("createGarmentAPI: ", JSON.stringify(response));
+    console.log("createGarmentAPI: ", JSON.stringify(response));
     return response;
   } catch(err) {
     console.log(err);
@@ -14,9 +14,9 @@ export async function createGarmentAPI(garmentObj)  {
 }
 
 export async function listGarmentsAPI(options) {
-  if(!options) options = {};
+  const listOptions = options || {};
   try {
-    const response = await API.graphql(graphqlOperation(listGarmentsQuery, options));
+    const response = await API.graphql(graphqlOperation(listGarmentsQuery, listOptions));
     // console.log("listGarmentsAPI: ", JSON.stringify(response));
     return response;
   } catch(err) {
