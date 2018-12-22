@@ -3,6 +3,7 @@
 
 ## Technology stack
 React Native
+
 AWS services: 
 - Authentication: Cognito
 - Database: GraphQL, MongoDB, Lamda
