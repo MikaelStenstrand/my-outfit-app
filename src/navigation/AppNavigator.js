@@ -7,18 +7,15 @@ import {
 // SCREENS
 import HomeScreen from '../screens/HomeScreen.js';
 import GarmentsScreen from '../screens/GarmentsScreens.js';
-import GarmentDetailView from '../screens/GarmentDetailView.js';
-
-// // HOME
-// const HomeStack = createStackNavigator({
-//   Home: HomeScreen,
-// });
+import GarmentDetailView from '../screens/views/GarmentDetailView.js';
+import GarmentNewView from '../screens/views/GarmentNewView.js';
 
 // GARMENTS
 const GarmentsStack = createStackNavigator(
   {
     Garments: GarmentsScreen,
     GarmentDetailView: GarmentDetailView,
+    GarmentNewView: GarmentNewView,   
   },
   {
     defaultNavigationOptions: {
