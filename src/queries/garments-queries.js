@@ -1,12 +1,13 @@
 
-export const listGarmentsQuery = `query listGarments {
-  listGarments{
-    items{
+export const listGarmentsQuery = `query listGarments($filter: ModelGarmentFilterInput, $limit: Int) {
+  listGarments(filter: $filter, limit: $limit) {
+    items {
       id
       name
       description
       type
     }
+    nextToken
   }
 }`
 

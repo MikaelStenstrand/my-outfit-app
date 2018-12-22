@@ -5,7 +5,6 @@ import Amplify, { Storage } from 'aws-amplify';
 import AppNavigator from './src/navigation/AppNavigator.js';
 import ImagePickerContainer from './src/components/ImagePickerContainer.js';
 
-
 // INITIALIZATIONS
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);

@@ -13,9 +13,11 @@ export default class ListGarmentsContainer extends Component {
   }
 
   componentDidMount() {
-    listGarmentsAPI()
+    const options = { limit: 20 };
+    listGarmentsAPI(options)
       .then(result => {
         // console.log("ListGarmentsContainer" , result.data.listGarments.items);
+        console.log("ListGarmentsContainer: " , result.data.listGarments.items.length);
         this.setState({
           garments: result.data.listGarments.items
         });
