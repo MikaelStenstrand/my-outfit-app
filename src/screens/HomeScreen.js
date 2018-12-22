@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, Button} from 'react-native';
-
+import {StyleSheet, Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { Button } from 'react-native-paper';
 
 export default class HomeScreen extends Component {
   
@@ -10,9 +10,11 @@ export default class HomeScreen extends Component {
         <ScrollView style={styles.body}>
           <Text>MY OUTFIT</Text>
           <Button
-            title="Go to clothes"
-            onPress={() => this.props.navigation.navigate('Garments')}
-          />
+            mode="contained"
+            icon="add-a-photo"
+            onPress={() => this.props.navigation.navigate('Garments')}>
+              Got to Clothes
+          </Button>
         </ScrollView>
       </View>
     );

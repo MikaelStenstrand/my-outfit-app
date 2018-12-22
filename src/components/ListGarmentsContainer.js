@@ -26,7 +26,7 @@ class ListGarmentsContainer extends Component {
       })
   }
 
-  showGarmentDetail(garment)  {
+  navigateToGarmentDetail(garment)  {
     console.log(this.props)
     this.props.navigation.navigate('GarmentDetailView', {
       garment: garment,
@@ -45,7 +45,7 @@ class ListGarmentsContainer extends Component {
                   key={garment.id}
                   title={garment.name}
                   subtitle={garment.type}
-                  onPress={() => this.showGarmentDetail(garment)}
+                  onPress={() => this.navigateToGarmentDetail(garment)}
                 />
               ))
             }
