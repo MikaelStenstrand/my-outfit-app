@@ -2,27 +2,40 @@ import { Platform } from 'react-native'
 import { Storage } from 'aws-amplify';
 import RNFetchBlob from 'react-native-fetch-blob';
 
-const photosDirectory = 'photos/';
+const photosDirectory = 'garments/';
+// S3 upload configuration
+// https://aws-amplify.github.io/docs/js/storage#file-access-levels
+const defaultUploadOptions = {
+  contentType: 'image/jps',
+  level: 'private'
+};
+const defaultGeteOptions = {
+  level: 'private'
+}
 
 /**
  * Uploads the given file to AWS S3 bucket
- * @param {response object from ImagePicker} fileObj 
- * @param {AWS Amplify Storage options} options 
+ * @param {response object from ImagePicker} fileObj
+ * @param {AWS Amplify Storage options} options
  */
-export function uploadFile(fileObj, options)	{
+export async function uploadFile(fileObj, options)	{
+  const uploadOptions = options || defaultUploadOptions;
   const fileUri = getFileUriForPlatform(fileObj.uri);
-
-  readFile(fileUri).then(buffer => {
+  try {
+    const buffer = await readFile(fileUri)
     const key = photosDirectory + fileObj.fileName;
-    Storage.put(key, buffer, options)
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
-  }).catch(e => {
-      console.log(e);
-  });
+    const result = await Storage.put(key, buffer, options);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-
+export async function getPhotoFromCloud(photoURI, options)  {
+  const getOptions = options || defaultGeteOptions;
+  let image = await Storage.get(photoURI, getOptions);
+  return image
+}
 
 function readFile(filePath) {
   return RNFetchBlob.fs.readFile(filePath, 'base64')

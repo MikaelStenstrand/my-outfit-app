@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import { uploadFile } from "../scripts/cloudStorage.js";
 import ImagePicker from 'react-native-image-picker';
-
-// S3 upload configuration
-// https://aws-amplify.github.io/docs/js/storage#file-access-levels
-const uploadOptions = {
-  contentType: 'image/jps',
-  level: 'private'
-};
+import { Button } from 'react-native-elements';
 
 export default class ImagePickerContainer extends Component {
 
@@ -25,8 +19,12 @@ export default class ImagePickerContainer extends Component {
         console.log('User tapped custom button: ', response.customButton);
         return;
       } else {
-        uploadFile(response, uploadOptions);
-        // add new clouth with the new image
+        uploadFile(response)
+          .then((result) => {
+            this.props.capturePhotoURI(result); // passing the photo URI to parent for storing
+          }).catch((err) => {
+            console.log(err);
+        });
       }
     });
   }
@@ -34,9 +32,11 @@ export default class ImagePickerContainer extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity onPress={this.takePhoto.bind(this)}>
-          <Text>Take photo</Text>
-        </TouchableOpacity>
+        <Button
+            icon={{name: 'add-a-photo'}}
+            title='add a photo' 
+            onPress={() => this.takePhoto()}  
+          />
       </View>
     );
   }

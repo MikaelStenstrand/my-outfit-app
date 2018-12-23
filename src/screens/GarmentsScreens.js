@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Button } from 'react-native-paper';
+import { sharedStyles } from '../scripts/styles.js';
 import ListGarmentsContainer from '../components/ListGarmentsContainer.js';
 
 export default class GarmentsScreens extends Component {
@@ -19,7 +20,7 @@ export default class GarmentsScreens extends Component {
         <ScrollView>
           <ListGarmentsContainer />
         </ScrollView>
-        <View style={styles.footer}>
+        <View style={sharedStyles.floatingButton.bottomRight}>
           <Icon
               raised
               name='plus'
@@ -37,10 +38,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  footer: {
-    position:'absolute',
-    bottom: 15,
-    right: 15,
-    alignSelf:'flex-end'
-  }
 });
