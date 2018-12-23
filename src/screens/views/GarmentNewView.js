@@ -80,18 +80,19 @@ export default class GarmentNewView extends Component {
             value={this.state.type}
             onChangeText={(type) => this.setState({ type })}
           />
-          <Button
-            icon='save'
-            onPress={() => this.saveNewGarment()}>
-            Save it!
-          </Button>
-
-          <Divider />
 
           { createdMessage }
           { errorMessage }
         </ScrollView>
-
+        <View>
+          <Button
+              icon='save'
+              mode="contained"
+              style={styles.saveButton}
+              onPress={() => this.saveNewGarment()}>
+              Save it!
+            </Button>
+        </View>
       </View>
     );
   }
@@ -101,7 +102,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  createdButton: {
-
+  saveButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
   }
 });

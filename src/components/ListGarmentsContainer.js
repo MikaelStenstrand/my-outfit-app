@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import { List, ListItem } from 'react-native-elements'
+// import { List, ListItem } from 'react-native-elements'
 import { listGarmentsAPI } from '../scripts/garment-api-calls.js';
 import { withNavigation } from 'react-navigation';
+import { List } from 'react-native-paper';
 
 class ListGarmentsContainer extends Component {
   constructor(props)  {
@@ -36,20 +37,16 @@ class ListGarmentsContainer extends Component {
   render() {
     return (
       <View>
-        <List containerStyle={{marginBottom: 20}}>
-            {
-              this.state.garments.map((garment) => (
-                <ListItem
-                  roundAvatar
-                  avatar={{}}
-                  key={garment.id}
-                  title={garment.name}
-                  subtitle={garment.type}
-                  onPress={() => this.navigateToGarmentDetail(garment)}
-                />
-              ))
-            }
-          </List>
+          {
+            this.state.garments.map((garment) => (
+              <List.Item
+              title={garment.name}
+              description={garment.description}
+              key={garment.id}
+              onPress={() => this.navigateToGarmentDetail(garment)}
+            />
+            ))
+          }
       </View>
     );
   }
