@@ -33,9 +33,7 @@ class GarmentDetailView extends Component {
   }
 
   renderGarmentPhoto() {
-    console.log('trying to render photo', this.state)
       if (this.state.garmentPhotoForRendering !== '') {
-      console.log('rendering image...')
       return (
         <Image
           style={styles.garmentPhoto}
@@ -49,7 +47,6 @@ class GarmentDetailView extends Component {
   render() {
     const garment = this.props.navigation.getParam('garment', '{}');
     const garmentPhoto = this.renderGarmentPhoto();
-    console.log('garment',garment)
     if (!garment.hasOwnProperty('id')) {
       return (<View><Text>Ups! Something went wrong...</Text></View>)
     } else {
