@@ -5,7 +5,7 @@ export async function createGarmentAPI(garmentObj)  {
   if (!garmentObj) return;
   try {
     const response = await API.graphql(graphqlOperation(createGarmentQuery, garmentObj));
-    // console.log("createGarmentAPI: ", response);
+    console.log("createGarmentAPI: ", response);
     return response;
   } catch(err) {
     console.log(err);

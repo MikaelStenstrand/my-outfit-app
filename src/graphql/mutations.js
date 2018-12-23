@@ -7,6 +7,7 @@ export const createGarment = `mutation CreateGarment($input: CreateGarmentInput!
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -16,6 +17,7 @@ export const updateGarment = `mutation UpdateGarment($input: UpdateGarmentInput!
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -25,6 +27,7 @@ export const deleteGarment = `mutation DeleteGarment($input: DeleteGarmentInput!
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -38,6 +41,7 @@ export const createOutfit = `mutation CreateOutfit($input: CreateOutfitInput!) {
         id
         name
         description
+        photoURI
       }
       nextToken
     }
@@ -54,6 +58,7 @@ export const updateOutfit = `mutation UpdateOutfit($input: UpdateOutfitInput!) {
         id
         name
         description
+        photoURI
       }
       nextToken
     }
@@ -70,6 +75,7 @@ export const deleteOutfit = `mutation DeleteOutfit($input: DeleteOutfitInput!) {
         id
         name
         description
+        photoURI
       }
       nextToken
     }

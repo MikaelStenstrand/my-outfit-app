@@ -3,6 +3,7 @@ type Garment @model {
   name: String!
   description: String
   type: GarmentType
+  photoURI: String
 }
 
 type Outfit @model {

@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/auth/cognito33d05604-cloudformation-template.yml",
 				"logicalId": "authcognito33d05604"
 			},
-			"lastPushTimeStamp": "2018-12-17T19:04:17.822Z",
+			"lastPushTimeStamp": "2018-12-23T15:27:22.913Z",
 			"output": {
 				"AppClientSecret": "ib5r20ghin9do937flrt19htgnophphfchgvcnl8lv2fijn3fhn",
 				"UserPoolId": "eu-central-1_Gx8cMYi1V",
@@ -40,7 +40,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
 				"logicalId": "analyticsmyoutfitapp"
 			},
-			"lastPushTimeStamp": "2018-12-17T19:04:17.822Z",
+			"lastPushTimeStamp": "2018-12-23T15:27:22.914Z",
 			"output": {
 				"appName": "myoutfitapp",
 				"Region": "us-east-1",
@@ -57,7 +57,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storagemyoutfitapp"
 			},
-			"lastPushTimeStamp": "2018-12-17T19:04:17.823Z",
+			"lastPushTimeStamp": "2018-12-23T15:27:22.915Z",
 			"output": {
 				"BucketName": "myoutfitappd2ad6d03e4a14c1f9956f3cc1205d928",
 				"Region": "eu-central-1"
@@ -82,8 +82,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myoutfitapp-20181215205434-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apimyoutfitapp"
 			},
-			"lastPushTimeStamp": "2018-12-17T19:04:19.344Z",
-			"lastPushDirHash": "CNrECqbBMVWaVKeFPriAHHm7+KI="
+			"lastPushTimeStamp": "2018-12-23T15:27:24.170Z",
+			"lastPushDirHash": "nY61+QibRXB60I2s7Q13FY7aFdE="
 		}
 	}
 }

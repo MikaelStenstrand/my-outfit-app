@@ -11,15 +11,21 @@ export const listGarmentsQuery = `query listGarments($filter: ModelGarmentFilter
   }
 }`
 
-export const createGarmentQuery = `mutation createGarment($name:String! $description: String! $type: GarmentType!) {
+export const createGarmentQuery = `mutation createGarment(
+  $name:String!
+  $description: String!
+  $type: GarmentType!
+  $photoURI: String!) {
   createGarment(input:{
     name:$name
     description:$description
     type:$type
+    photoURI: $photoURI
   }){
     id
     name
     description
     type
+    photoURI
   }
 }`

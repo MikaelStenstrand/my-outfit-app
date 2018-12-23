@@ -7,6 +7,7 @@ export const getGarment = `query GetGarment($id: ID!) {
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -21,6 +22,7 @@ export const listGarments = `query ListGarments(
       name
       description
       type
+      photoURI
     }
     nextToken
   }
@@ -36,6 +38,7 @@ export const getOutfit = `query GetOutfit($id: ID!) {
         id
         name
         description
+        photoURI
       }
       nextToken
     }
@@ -57,6 +60,7 @@ export const listOutfits = `query ListOutfits(
           id
           name
           description
+          photoURI
         }
         nextToken
       }

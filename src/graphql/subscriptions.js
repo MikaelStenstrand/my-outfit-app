@@ -7,6 +7,7 @@ export const onCreateGarment = `subscription OnCreateGarment {
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -16,6 +17,7 @@ export const onUpdateGarment = `subscription OnUpdateGarment {
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -25,6 +27,7 @@ export const onDeleteGarment = `subscription OnDeleteGarment {
     name
     description
     type
+    photoURI
   }
 }
 `;
@@ -38,6 +41,7 @@ export const onCreateOutfit = `subscription OnCreateOutfit {
         id
         name
         description
+        photoURI
       }
       nextToken
     }
@@ -54,6 +58,7 @@ export const onUpdateOutfit = `subscription OnUpdateOutfit {
         id
         name
         description
+        photoURI
       }
       nextToken
     }
@@ -70,6 +75,7 @@ export const onDeleteOutfit = `subscription OnDeleteOutfit {
         id
         name
         description
+        photoURI
       }
       nextToken
     }
