@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import { getPhotoFromCloud } from '../../scripts/cloudStorage.js';
 
 class GarmentDetailView extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -10,10 +10,47 @@ class GarmentDetailView extends Component {
       title: 'detailed view',
     }
   }
+  
+  constructor(props)  {
+    super(props)
+    this.state = {
+      garmentPhotoForRendering: '',
+    }
+  }
+
+  componentDidMount() {
+    const garment = this.props.navigation.getParam('garment', {});
+    this.fetchPhoto(garment.photoURI);
+  }
+  
+  async fetchPhoto(URI) {
+    if (URI !== '') {
+      const result = await getPhotoFromCloud(URI);
+      this.setState({
+        garmentPhotoForRendering: result,
+      });
+    }
+  }
+
+  renderGarmentPhoto() {
+    console.log('trying to render photo', this.state)
+      if (this.state.garmentPhotoForRendering !== '') {
+      console.log('rendering image...')
+      return (
+        <Image
+          style={styles.garmentPhoto}
+          source={{uri: this.state.garmentPhotoForRendering}}
+          resizeMode="contain"
+        />
+      )
+    }
+  }
 
   render() {
     const garment = this.props.navigation.getParam('garment', '{}');
-    if (Object.keys(garment).length === 0) {
+    const garmentPhoto = this.renderGarmentPhoto();
+    console.log('garment',garment)
+    if (!garment.hasOwnProperty('id')) {
       return (<View><Text>Ups! Something went wrong...</Text></View>)
     } else {
       return (
@@ -23,6 +60,9 @@ class GarmentDetailView extends Component {
             <View>
               <Text>{garment.type}</Text>
               <Text>{garment.description}</Text>
+              <View style={styles.garmentPhotoContainer}>
+                { garmentPhoto }
+              </View>
             </View>
           </ScrollView>
           <Text style={styles.debug}>{garment.id}</Text>
@@ -45,6 +85,14 @@ const styles = StyleSheet.create({
   },
   debug: {
     color: '#b2b2b2'
+  },
+  garmentPhotoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  garmentPhoto: {
+    width: 200, 
+    height: 200,
   }
 });
 

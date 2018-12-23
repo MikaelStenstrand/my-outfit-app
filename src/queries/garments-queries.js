@@ -6,6 +6,7 @@ export const listGarmentsQuery = `query listGarments($filter: ModelGarmentFilter
       name
       description
       type
+      photoURI
     }
     nextToken
   }

@@ -28,7 +28,6 @@ class ListGarmentsContainer extends Component {
   }
 
   navigateToGarmentDetail(garment)  {
-    console.log(this.props)
     this.props.navigation.navigate('GarmentDetailView', {
       garment: garment,
     });
@@ -40,11 +39,12 @@ class ListGarmentsContainer extends Component {
           {
             this.state.garments.map((garment) => (
               <List.Item
-              title={garment.name}
-              description={garment.description}
-              key={garment.id}
-              onPress={() => this.navigateToGarmentDetail(garment)}
-            />
+                title={garment.name}
+                description={garment.description}
+                key={garment.id}
+                photoURI={garment.photoURI}
+                onPress={() => this.navigateToGarmentDetail(garment)}
+              />
             ))
           }
       </View>
