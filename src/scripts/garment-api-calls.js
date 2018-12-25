@@ -1,11 +1,18 @@
 import { API, graphqlOperation } from 'aws-amplify';
-import { listGarmentsQuery, createGarmentQuery } from '../queries/garments-queries.js';
-import { deleteGarment } from '../graphql/mutations.js';
+import { createGarment, deleteGarment } from '../graphql/mutations.js';
+import { listGarments } from '../graphql/queries.js';
 
 export async function createGarmentAPI(garment)  {
   if (!garment) return;
   try {
-    const response = await API.graphql(graphqlOperation(createGarmentQuery, garment));
+    const response = await API.graphql(graphqlOperation(createGarment, {
+      input: {
+        name: garment.name,
+        description: garment.description,
+        type: garment.type,
+        photoURI: garment.photoURI,
+      }
+    }));
     console.log("createGarmentAPI: ", response);
     return response;
   } catch(err) {
@@ -17,7 +24,7 @@ export async function createGarmentAPI(garment)  {
 export async function listGarmentsAPI(options) {
   const listOptions = options || {};
   try {
-    const response = await API.graphql(graphqlOperation(listGarmentsQuery, listOptions));
+    const response = await API.graphql(graphqlOperation(listGarments, listOptions));
     // console.log("listGarmentsAPI: ", response);
     return response;
   } catch(err) {

@@ -39,7 +39,7 @@ export async function getPhotoFromCloud(photoURI, options)  {
 
 export async function deletePhoto(photoURI, options) {
   const deleteOptions = options || defaultOptions;
-  const response = await Storage.remove(photoURI, deleteOptions); 
+  const response = await Storage.remove(photoURI, deleteOptions);
   // the response is always empty object... https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html
   return response;
 }

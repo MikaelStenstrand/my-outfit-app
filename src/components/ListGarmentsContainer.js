@@ -14,7 +14,7 @@ class ListGarmentsContainer extends Component {
   }
 
   componentDidMount() {
-    const options = { limit: 20 };
+    const options = { limit: 50 };
     listGarmentsAPI(options)
       .then(result => {
         // console.log("ListGarmentsContainer" , result.data.listGarments.items);
