@@ -7,9 +7,10 @@ import { createGarmentAPI } from '../../scripts/garment-api-calls.js';
 import { Button, Icon, Text } from 'react-native-elements';
 import ImagePickerContainer from '../../components/ImagePickerContainer.js';
 import { getPhotoFromCloud } from '../../scripts/cloudStorage.js';
+import { sharedStyles } from '../../scripts/sharedStyles.js';
 
 const config = {
-  timeoutGoBack: 2500,
+  timeoutGoBack: 1500,
 };
 
 export default class GarmentNewView extends Component {
@@ -56,7 +57,7 @@ export default class GarmentNewView extends Component {
   renderCreatedMessage()  {
     if(this.state.isCreated) {
       return (
-        <View style={styles.row}>
+        <View style={sharedStyles.row}>
           <Icon name='thumb-up' color='#0B6623'></Icon>
           <Text>New clothing added!</Text>
         </View>
@@ -69,7 +70,7 @@ export default class GarmentNewView extends Component {
   renderErrorMessage()  {
     if (this.state.isError) {
       return (
-        <View style={styles.row}>
+        <View style={sharedStyles.row}>
           <Icon name='thumb-down' color='#8b0000'></Icon>
           <Text>Ups! Problems occur</Text>
         </View>
@@ -100,6 +101,7 @@ export default class GarmentNewView extends Component {
       });
     }
   }
+  
   renderGarmentPhoto() {
     if (this.state.garmentPhotoForRendering !== '') {
       return (
@@ -164,10 +166,6 @@ const styles = StyleSheet.create({
   largerButton: {
     paddingTop: 10,
     paddingBottom: 10,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
   },
   garmentPhotoContainer: {
     flexDirection: 'row',

@@ -9,7 +9,7 @@ const defaultUploadOptions = {
   contentType: 'image/jps',
   level: 'private'
 };
-const defaultGeteOptions = {
+const defaultOptions = {
   level: 'private'
 }
 
@@ -20,11 +20,11 @@ const defaultGeteOptions = {
  */
 export async function uploadFile(fileObj, options)	{
   const uploadOptions = options || defaultUploadOptions;
-  const fileUri = getFileUriForPlatform(fileObj.uri);
+  const fileUri = _getFileUriForPlatform(fileObj.uri);
   try {
-    const buffer = await readFile(fileUri)
+    const buffer = await _readFile(fileUri)
     const key = photosDirectory + fileObj.fileName;
-    const result = await Storage.put(key, buffer, options);
+    const result = await Storage.put(key, buffer, uploadOptions);
     return result;
   } catch (err) {
     console.log(err);
@@ -32,20 +32,28 @@ export async function uploadFile(fileObj, options)	{
 }
 
 export async function getPhotoFromCloud(photoURI, options)  {
-  const getOptions = options || defaultGeteOptions;
+  const getOptions = options || defaultOptions;
   let image = await Storage.get(photoURI, getOptions);
   return image
 }
 
-function readFile(filePath) {
+export async function deletePhoto(photoURI, options) {
+  const deleteOptions = options || defaultOptions;
+  const response = await Storage.remove(photoURI, deleteOptions); 
+  // the response is always empty object... https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html
+  return response;
+}
+
+function _readFile(filePath) {
   return RNFetchBlob.fs.readFile(filePath, 'base64')
     .then(data => new Buffer(data, 'base64'));
 }
 
-function getFileUriForPlatform(fileUri)  {
+function _getFileUriForPlatform(fileUri)  {
   if (Platform.OS === 'ios') {
     return fileUri.replace('file://', '');
   } else {
     return fileUri;
   }
 }
+

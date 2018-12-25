@@ -9,13 +9,15 @@ import HomeScreen from '../screens/HomeScreen.js';
 import GarmentsScreen from '../screens/GarmentsScreens.js';
 import GarmentDetailView from '../screens/views/GarmentDetailView.js';
 import GarmentNewView from '../screens/views/GarmentNewView.js';
+import GarmentEditView from '../screens/views/GarmentEditView.js';
 
 // GARMENTS
 const GarmentsStack = createStackNavigator(
   {
     Garments: GarmentsScreen,
     GarmentDetailView: GarmentDetailView,
-    GarmentNewView: GarmentNewView,   
+    GarmentNewView: GarmentNewView,
+    GarmentEditView: GarmentEditView,
   },
   {
     defaultNavigationOptions: {

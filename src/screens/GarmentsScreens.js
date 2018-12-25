@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Button } from 'react-native-paper';
-import { sharedStyles } from '../scripts/styles.js';
+import { sharedStyles } from '../scripts/sharedStyles.js';
 import ListGarmentsContainer from '../components/ListGarmentsContainer.js';
 
 export default class GarmentsScreens extends Component {
