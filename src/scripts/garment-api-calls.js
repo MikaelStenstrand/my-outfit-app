@@ -1,5 +1,5 @@
 import { API, graphqlOperation } from 'aws-amplify';
-import { createGarment, deleteGarment } from '../graphql/mutations.js';
+import { createGarment, updateGarment, deleteGarment } from '../graphql/mutations.js';
 import { listGarments } from '../graphql/queries.js';
 
 export async function createGarmentAPI(garment)  {
@@ -16,6 +16,25 @@ export async function createGarmentAPI(garment)  {
     console.log("createGarmentAPI: ", response);
     return response;
   } catch(err) {
+    console.log(err);
+    return;
+  }
+}
+
+export async function updateGarmentAPI(garment)  {
+  if (!garment) return;
+  try {
+    const response = await API.graphql(graphqlOperation(updateGarment, {
+      input: {
+        id: garment.id,
+        name: garment.name,
+        description: garment.description,
+        type: garment.type,
+        photoURI: garment.photoURI,
+      }
+    }));
+    return response;
+  } catch(err)  {
     console.log(err);
     return;
   }

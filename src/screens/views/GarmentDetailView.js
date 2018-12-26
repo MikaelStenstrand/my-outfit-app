@@ -24,8 +24,10 @@ class GarmentDetailView extends Component {
             type='font-awesome'
             color='#fff'
             onPress={() => {
-              navigation.navigate('GarmentEditView', {
+              // Navigate to GarmentCreationView for editing
+              navigation.navigate('GarmentCreationView', {
                 garment: garment,
+                isEditing: true,
               })
             }}
           />

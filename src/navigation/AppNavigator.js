@@ -8,16 +8,14 @@ import {
 import HomeScreen from '../screens/HomeScreen.js';
 import GarmentsScreen from '../screens/GarmentsScreens.js';
 import GarmentDetailView from '../screens/views/GarmentDetailView.js';
-import GarmentNewView from '../screens/views/GarmentNewView.js';
-import GarmentEditView from '../screens/views/GarmentEditView.js';
+import GarmnetCreationView from '../screens/views/GarmnetCreationView.js';
 
 // GARMENTS
 const GarmentsStack = createStackNavigator(
   {
     Garments: GarmentsScreen,
     GarmentDetailView: GarmentDetailView,
-    GarmentNewView: GarmentNewView,
-    GarmentEditView: GarmentEditView,
+    GarmentCreationView: GarmnetCreationView,
   },
   {
     defaultNavigationOptions: {
@@ -34,7 +32,7 @@ const GarmentsStack = createStackNavigator(
 
 // TAB NAVIGATION
 const BottomTabNavigator = createBottomTabNavigator({
-  Home: HomeScreen,
+  // Home: HomeScreen,
   Garments: GarmentsStack,
 });
 

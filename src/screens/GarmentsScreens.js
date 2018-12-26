@@ -9,8 +9,13 @@ export default class GarmentsScreens extends Component {
     title: 'Clothes',
   }
 
-  navigateToGarmentNew()  {
-    this.props.navigation.navigate('GarmentNewView');
+  /**
+   * navigate to create new garment
+   */
+  navigateToGarmentCreationView()  {
+    this.props.navigation.navigate('GarmentCreationView', {
+      isEditing: false,
+    });
   }
 
   render() {
@@ -25,7 +30,7 @@ export default class GarmentsScreens extends Component {
               name='plus'
               type='font-awesome'
               color='#f50'
-              onPress={() => this.navigateToGarmentNew()} 
+              onPress={() => this.navigateToGarmentCreationView()} 
             />
         </View>
       </View>

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
+import PropTypes from 'prop-types';
 import { uploadFile } from "../scripts/cloudStorage.js";
 import ImagePicker from 'react-native-image-picker';
 import { Button } from 'react-native-elements';
 
-export default class ImagePickerContainer extends Component {
+class ImagePickerContainer extends Component {
 
   takePhoto() {
     const imagePickerOptions = {};  // https://github.com/react-native-community/react-native-image-picker/blob/master/docs/Reference.md
@@ -34,7 +35,7 @@ export default class ImagePickerContainer extends Component {
       <View>
         <Button
             icon={{name: 'add-a-photo'}}
-            title='add a photo' 
+            title={this.props.title} 
             onPress={() => this.takePhoto()}  
           />
       </View>
@@ -45,3 +46,10 @@ export default class ImagePickerContainer extends Component {
 const styles = StyleSheet.create({
   
 });
+
+ImagePickerContainer.propTypes = {
+  title: PropTypes.string.isRequired,
+  capturePhotoURI: PropTypes.func.isRequired,
+};
+
+export default ImagePickerContainer;
