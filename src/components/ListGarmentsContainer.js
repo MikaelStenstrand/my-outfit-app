@@ -1,23 +1,31 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, RefreshControl} from 'react-native';
 import { listGarmentsAPI, subscribeToUpdateGarmentAPI, subscribeToCreateGarmentAPI, subscribeToDeleteGarmentAPI } from '../scripts/garmentApi.js';
 import { withNavigation } from 'react-navigation';
 import { List } from 'react-native-paper';
-import { Button } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
+
+const config = {
+  garmentDataFetchingOptions: { limit: 50 }
+}
 
 class ListGarmentsContainer extends Component {
   constructor(props)  {
     super(props);
     this.state = {
       garments: [],
+      isRefreshing: false,
     };
   }
 
   componentDidMount() {
-    const options = { limit: 50 };
+    this.fetchGarments(config.garmentDataFetchingOptions);
+    this.subscribe();
+  }
+
+  async fetchGarments(options) {
     listGarmentsAPI(options)
       .then(result => {
-        // console.log("ListGarmentsContainer" , result.data.listGarments.items);
         this.setState({
           garments: result.data.listGarments.items
         });
@@ -25,7 +33,13 @@ class ListGarmentsContainer extends Component {
       .catch(err => {
         console.log(err);
       })
-    this.subscribe();
+  }
+
+  onRefresh() {
+    this.setState({ isRefreshing: true });
+    this.fetchGarments(config.garmentDataFetchingOptions)
+      .then(() => this.setState({ isRefreshing: false }))
+      .catch((err) => console.log(err));
   }
 
   async subscribe() {
@@ -76,6 +90,13 @@ class ListGarmentsContainer extends Component {
   render() {
     return (
       <View>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.isRefreshing}
+              onRefresh={() => this.onRefresh()}
+            />
+        }>
           {
             this.state.garments.map((garment) => (
               <List.Item
@@ -87,6 +108,7 @@ class ListGarmentsContainer extends Component {
               />
             ))
           }
+        </ScrollView>
       </View>
     );
   }

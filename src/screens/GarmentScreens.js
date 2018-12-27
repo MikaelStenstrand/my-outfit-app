@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { sharedStyles } from '../scripts/sharedStyles.js';
 import ListGarmentsContainer from '../components/ListGarmentsContainer.js';
@@ -21,9 +21,7 @@ export default class GarmentsScreens extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <ListGarmentsContainer />
-        </ScrollView>
+        <ListGarmentsContainer />
         <View style={sharedStyles.floatingButton.bottomRight}>
           <Icon
               raised

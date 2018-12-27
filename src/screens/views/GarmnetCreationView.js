@@ -33,7 +33,7 @@ export default class GarmnetCreationView extends Component {
                   'Delete Clothes',
                   'Do you want to delete this piece of clothing?',
                   [
-                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: 'Cancel', onPress: () => console.log('Cancel'), style: 'cancel'},
                     {text: 'OK', onPress: () => {
                       deleteGarment(garment, navigation);
                     }},
@@ -228,7 +228,7 @@ export default class GarmnetCreationView extends Component {
         action={{
           label: 'Try again!',
           onPress: () => {
-            console.log('pressed')
+            //
           },
         }}
       >
@@ -251,7 +251,7 @@ export default class GarmnetCreationView extends Component {
         action={{
           label: 'Great!',
           onPress: () => {
-            console.log('pressed')
+            //
           },
         }}
       >
@@ -274,7 +274,7 @@ export default class GarmnetCreationView extends Component {
         action={{
           label: 'Great!',
           onPress: () => {
-            console.log('pressed')
+            //
           },
         }}
       >
