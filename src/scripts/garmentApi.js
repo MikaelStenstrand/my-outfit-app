@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { createGarment, updateGarment, deleteGarment } from '../graphql/mutations.js';
 import { listGarments } from '../graphql/queries.js';
+import { onUpdateGarment, onCreateGarment, onDeleteGarment } from '../graphql/subscriptions.js';
 
 export async function createGarmentAPI(garment)  {
   if (!garment) return;
@@ -64,4 +65,37 @@ export async function deleteGarmentAPI(garment) {
     console.log(err);
     return;
   }
+}
+
+export async function subscribeToUpdateGarmentAPI(handleSubscriptionFunction) {
+  const subscription = await API.graphql(graphqlOperation(onUpdateGarment))
+    .subscribe({
+      next: (data) => {
+        handleSubscriptionFunction(data)
+      },
+      error: (err) => console.warn(err)
+    });
+  return subscription;
+}
+
+export async function subscribeToCreateGarmentAPI(handleSubscriptionFunction) {
+  const subscription = await API.graphql(graphqlOperation(onCreateGarment))
+    .subscribe({
+      next: (data) => {
+        handleSubscriptionFunction(data)
+      },
+      error: (err) => console.warn(err)
+    });
+  return subscription;
+}
+
+export async function subscribeToDeleteGarmentAPI(handleSubscriptionFunction) {
+  const subscription = await API.graphql(graphqlOperation(onDeleteGarment))
+    .subscribe({
+      next: (data) => {
+        handleSubscriptionFunction(data)
+      },
+      error: (err) => console.warn(err)
+    });
+  return subscription;
 }

@@ -6,14 +6,14 @@ import {
 
 // SCREENS
 import HomeScreen from '../screens/HomeScreen.js';
-import GarmentsScreen from '../screens/GarmentsScreens.js';
+import GarmentScreen from '../screens/GarmentScreens.js';
 import GarmentDetailView from '../screens/views/GarmentDetailView.js';
 import GarmnetCreationView from '../screens/views/GarmnetCreationView.js';
 
 // GARMENTS
 const GarmentsStack = createStackNavigator(
   {
-    Garments: GarmentsScreen,
+    Garments: GarmentScreen,
     GarmentDetailView: GarmentDetailView,
     GarmentCreationView: GarmnetCreationView,
   },

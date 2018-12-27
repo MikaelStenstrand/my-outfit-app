@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Image, Alert } from 'react-native';
 import { Icon, Divider, Button } from 'react-native-elements';
 import { TextInput, Snackbar } from 'react-native-paper';
 import { GarmentType } from '../../scripts/garmentTypes.js';
-import { createGarmentAPI, updateGarmentAPI, deleteGarmentAPI } from '../../scripts/garment-api-calls.js';
+import { createGarmentAPI, updateGarmentAPI, deleteGarmentAPI } from '../../scripts/garmentApi.js';
 import ImagePickerContainer from '../../components/ImagePickerContainer.js';
 import { getPhotoFromCloud, deletePhoto } from '../../scripts/cloudStorage.js';
 
@@ -13,7 +13,6 @@ export default class GarmnetCreationView extends Component {
     const garment = navigation.getParam('garment');
     const isEditing = navigation.getParam('isEditing');
     if (isEditing)  {
-      console.log('EDITING');
       if (!garment && !garment.hasOwnProperty('name')) {return;}
       return {
         title: `Edit ${garment.name}`,
@@ -47,7 +46,6 @@ export default class GarmnetCreationView extends Component {
         )
       }
     } else {
-      console.log('NEW GARMENT')
       return {
         title: 'New Clothes',
       }
