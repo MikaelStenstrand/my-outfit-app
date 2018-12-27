@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert } from 'react-native';
 import { Icon, Divider, Button } from 'react-native-elements';
 import { TextInput, Snackbar } from 'react-native-paper';
 import { GarmentType } from '../../scripts/garmentTypes.js';
 import { createGarmentAPI, updateGarmentAPI, deleteGarmentAPI } from '../../scripts/garmentApi.js';
 import ImagePickerContainer from '../../components/ImagePickerContainer.js';
-import { getPhotoFromCloud, deletePhoto } from '../../scripts/cloudStorage.js';
+import { deletePhoto } from '../../scripts/cloudStorage.js';
+import GarmentPhoto from '../../components/GarmentPhoto.js';
 
 
 export default class GarmnetCreationView extends Component {
@@ -68,7 +69,6 @@ export default class GarmnetCreationView extends Component {
       this.state.description = garment.description;
       this.state.type = garment.type;
       this.state.photoURI = garment.photoURI;
-      this.fetchPhoto(this.state.photoURI);
     } else {
       // NEW GARMENT
       this.state.id = '';
@@ -127,28 +127,13 @@ export default class GarmnetCreationView extends Component {
   
   /**
    * called from ImagePickerContainer
-   * stores the URI to state and fetches the image from cloud
+   * stores the URI to state
    * @param {file URI of the file stored in cloud} uri 
    */
   capturePhotoURI(uri) {
     if (uri && uri.hasOwnProperty('key')) {
       this.setState({
         photoURI: uri.key,
-      });
-      
-      this.fetchPhoto(uri);
-    }
-  }
-
-  fetchPhoto() {
-    if (this.state.photoURI !== '') {
-      getPhotoFromCloud(this.state.photoURI)
-      .then((result) => {
-        this.setState({
-          garmentPhotCloudURL: result,
-        });
-      }).catch((err) => {
-        console.log(err);
       });
     }
   }
@@ -187,18 +172,6 @@ export default class GarmnetCreationView extends Component {
           title='save'
           icon={{name: 'save'}}
           onPress={() => this.saveNewGarment()}
-        />
-      )
-    }
-  }
-
-  renderGarmentPhoto() {
-    if (this.state.garmentPhotCloudURL !== '') {
-      return (
-        <Image
-          style={styles.garmentPhoto}
-          source={{uri: this.state.garmentPhotCloudURL}}
-          resizeMode="contain"
         />
       )
     }
@@ -287,7 +260,6 @@ export default class GarmnetCreationView extends Component {
   render() {
     const actionButton = this.renderActionButton(this.state.isEditing);
     const photoButton = this.renderPhotoButton();
-    const garmentPhoto = this.renderGarmentPhoto();
     const errorMessage = this.renderErrorMessage();
     const savedMessage = this.renderSavedMessage();
     const deleteMessage = this.renderDeletedMessage();
@@ -311,9 +283,7 @@ export default class GarmnetCreationView extends Component {
           />
           <Divider />
           { photoButton }
-          <View style={styles.garmentPhotoContainer}>
-            { garmentPhoto }
-          </View>
+          <GarmentPhoto photoURI={this.state.photoURI} />
         </ScrollView>
         <View>
           { actionButton }
@@ -330,14 +300,6 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
   },
-  garmentPhotoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  garmentPhoto: {
-    width: 200, 
-    height: 200,
-  }
 });
 
 function deleteGarment(garment, navigation)  {
