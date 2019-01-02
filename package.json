@@ -23,10 +23,14 @@
   "devDependencies": {
     "babel-jest": "23.6.0",
     "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.48.5",
+    "metro-react-native-babel-preset": "^0.51.1",
     "react-test-renderer": "16.6.3"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": { "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js" },
+    "setupFiles": [
+      "./jestSetup.js"
+    ]
   }
 }
