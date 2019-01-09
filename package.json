@@ -34,6 +34,7 @@
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
+    "testMatch": [ "**/__tests__/**/*.js?(x)", "**/?(*.)+(test).js?(x)" ],
     "setupFiles": [
       "./jestSetup.js"
     ]

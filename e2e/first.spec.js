@@ -4,8 +4,8 @@ describe('Example', () => {
   });
 
   it('should successfully render app', async () => {
-    const test = await element(by.text('Username *'))
-    console.log(test);
+    console.log('test');
+    await element(by.text('Username *'))
   });
 
   // it('should have welcome screen', async () => {
