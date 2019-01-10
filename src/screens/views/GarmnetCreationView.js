@@ -264,7 +264,7 @@ export default class GarmnetCreationView extends Component {
     const savedMessage = this.renderSavedMessage();
     const deleteMessage = this.renderDeletedMessage();
     return (
-      <View style={styles.container}>
+      <View style={styles.container} testID="garmentCreationView">
         <ScrollView>
           <TextInput
             label='Clothing'

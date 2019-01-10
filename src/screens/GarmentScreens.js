@@ -28,6 +28,7 @@ export default class GarmentsScreens extends Component {
               name='plus'
               type='font-awesome'
               color='#f50'
+              testID="garmentCreateButton"
               onPress={() => this.navigateToGarmentCreationView()} 
             />
         </View>

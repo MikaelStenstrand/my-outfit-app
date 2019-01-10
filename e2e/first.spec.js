@@ -1,20 +1,15 @@
 describe('Example', () => {
   beforeEach(async () => {
-    await device.reloadReactNative();
+    await device.relaunchApp();
   });
 
-  it('should successfully render app', async () => {
-    console.log('test');
-    await element(by.text('Username *'))
+  it('shoud navigate to garment creation screen', async () => {
+    await waitFor(element(by.id('garmentCreateButton'))).toBeVisible().withTimeout(5000);
+    await expect(element(by.id('garmentCreateButton'))).toBeVisible();
+    await element(by.id('garmentCreateButton')).tap();
+
+    await waitFor(element(by.id('garmentCreationView'))).toBeVisible().withTimeout(10000);
+    await expect(element(by.id('garmentCreationView'))).toBeVisible();
   });
 
-  // it('should have welcome screen', async () => {
-  //   await expect(element(by.id('garment-create-button'))).toBeVisible();
-  // });
-
-  // it('should navigate to garment creation view on tap', async () => {
-  //   await element(by.id('garment-create-button')).tap();
-  //   await expect(element(by.id('garment-creation-view'))).toBeVisible();
-  // });
-
-})
+});
